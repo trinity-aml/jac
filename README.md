@@ -9,4 +9,5 @@
 ***
 
 Альтернативная установка на linux с помощью скрипта, спасибо @nikk
+
 curl -s https://raw.githubusercontent.com/immisterio/jac/main/install.sh | bash
