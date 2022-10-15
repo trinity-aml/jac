@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using JacRed.Engine;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
+using System.Globalization;
 
 namespace JacRed.Controllers
 {
@@ -586,7 +587,7 @@ namespace JacRed.Controllers
                     var gsize = Regex.Match(sizeName, "([0-9\\.,]+) (Mb|МБ|GB|ГБ|TB|ТБ)", RegexOptions.IgnoreCase).Groups;
                     if (!string.IsNullOrWhiteSpace(gsize[2].Value))
                     {
-                        if (double.TryParse(gsize[1].Value.Replace(".", ","), out size) && size != 0)
+                        if (double.TryParse(gsize[1].Value.Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out size) && size != 0)
                         {
                             if (gsize[2].Value.ToLower() is "gb" or "гб")
                                 size *= 1024;
